@@ -4,7 +4,7 @@ const mariadb = require('mariadb');
 // const passport = require('passport');/
 const passportConfig = require('./passport/passport');
 const UserRouter = require('./routes/userRouter');
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 const app = express();
 
 passportConfig()
@@ -29,5 +29,5 @@ app.set("view engine", "ejs");
 
 
 app.listen(port, ()=>{
-    console.log(port,"번 포트가 열렸습니다.")
+    console.log(`${port}로 서버가 열렸습니다.`)
 });
