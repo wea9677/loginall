@@ -19,6 +19,7 @@ app.get('/', (req, res) =>{
 
 
 app.use('/auth', UserRouter);
+
 app.set("view engine", "ejs");
 
 
