@@ -4,7 +4,8 @@ const router = express.Router();
 
 const {
     googleCallback,
-    appleCallback
+    appleCallback,
+    
 } = require('../controller/userController');
 
 //구글 로그인
@@ -19,6 +20,7 @@ router.post('/auth/apple', passport.authenticate('apple') );
 
 
 //로그인
-
+router.post('/auth/login', passport.authenticate('local', {successRedirect : '/',
+            failureRedirect: '/auth/login' }));
 
 module.exports = router;

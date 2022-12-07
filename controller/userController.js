@@ -69,7 +69,11 @@ const appleCallback = (req, res, next) =>{
     }
 }
 
+
+
+
 module.exports = {
     googleCallback,
-    appleCallback
+    appleCallback,
+    // loginCallback
 };

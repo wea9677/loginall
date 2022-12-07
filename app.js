@@ -17,8 +17,10 @@ app.get('/', (req, res) =>{
     res.status(200).render('index');
 });
 
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/auth', UserRouter);
+
 
 app.set("view engine", "ejs");
 
