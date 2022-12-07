@@ -1,11 +1,13 @@
 require("dotenv").config();
 const express = require('express');
 const mariadb = require('mariadb');
-const passport = require('passport');
+// const passport = require('passport');/
+const passportConfig = require('./passport/passport');
 const UserRouter = require('./routes/userRouter');
 const port = process.env.PORT
 const app = express();
 
+passportConfig()
 app.use(express.json());
 
 

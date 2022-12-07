@@ -17,5 +17,5 @@ module.exports = () =>{
     });
 
     google();
-    apple();
+    // apple();/
 }
