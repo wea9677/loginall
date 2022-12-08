@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-
+const user = require('../model/user');
 
 
 //구글 로그인
@@ -69,11 +69,45 @@ const appleCallback = (req, res, next) =>{
     }
 }
 
+//로컬 회원가입 & 로그인
 
+const localSignup = async (req, res, next) =>{
+    // try {
+        const {email, password, repeat_password} = req.body;
+        console.log(req.body,'나오니')
+
+        if(password !== repeat_password) {
+            res.status(400).send({
+                errorMessage: "패스워드가 일치하지 않습니다."
+            });
+            return;
+        }
+        const existUsers = user.find({
+            $or:[{email}]
+        });
+        console.log(email,'중복가입 확인하기');
+        if (existUsers.length) {
+            res.status(400).send({
+                errorMessage:'중복된 이메일이 존재합니다.'
+            });
+            return;
+        }
+        const newUser = new user({email, password});
+        newUser.save();
+        console.log(newUser);
+        res.status(201).send({
+            message : '회원가입에 성공했습니다!'
+        });
+    // } catch (error) {
+    //     res.status(400).send({
+    //         errorMessage:'회원가입 실패'
+    //     })
+    // }
+}
 
 
 module.exports = {
     googleCallback,
     appleCallback,
-    // loginCallback
+    localSignup
 };

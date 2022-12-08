@@ -1,6 +1,6 @@
 const passport = require('passport');
 const AppleStrategy = require('passport-apple').Strategy;
-// const user = require('../model/user');
+const user = require('../model/user');
 const fs = require('fs');
 module.exports = () => {
     passport.use(

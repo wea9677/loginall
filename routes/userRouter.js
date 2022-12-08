@@ -5,6 +5,7 @@ const router = express.Router();
 const {
     googleCallback,
     appleCallback,
+    localSignup
     
 } = require('../controller/userController');
 
@@ -19,8 +20,7 @@ router.get('/apple', appleCallback );
 router.post('/auth/apple', passport.authenticate('apple') );
 
 
-//로그인
-router.post('/auth/login', passport.authenticate('local', {successRedirect : '/',
-            failureRedirect: '/auth/login' }));
+//로컬 회원가입 & 로그인
+router.post('/signup', localSignup);
 
 module.exports = router;
