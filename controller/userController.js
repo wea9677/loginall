@@ -94,7 +94,7 @@ const localSignup = async (req, res, next) =>{
         }
         const newUser = new user({email, password});
         newUser.save();
-        console.log(newUser);
+        // console.log(newUser);
         res.status(201).send({
             message : '회원가입에 성공했습니다!'
         });
