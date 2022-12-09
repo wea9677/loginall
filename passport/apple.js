@@ -18,7 +18,7 @@ module.exports = () => {
                 // AchJfcDnre3Z0TxumK5HJ3W5nxYzltDzqOdPFsCzIx87GlWKUB1tVQPXi8TpOZp0
                 // ZLn/lXgh
                 // -----END PRIVATE KEY-----`,
-                privateKeyLocation:path.join(__dirname, "AuthKey_F7J4Y7RXMA.p8"),
+                privateKeyLocation:path.join(__dirname, "../config/AuthKey_F7J4Y7RXMA.p8"),
                 scope: 'name email'
             }, async (req, accessToken, refreshToken, idToken, profile, cb) =>{
                 console.log('데이터 지니가나요',
