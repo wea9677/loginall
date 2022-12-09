@@ -3,5 +3,5 @@
     "team_id": "F7J4Y7RXMA",
     "redirect_url" : "https://api.sprataprac.shop/oauth/apple/callback",
     "key_id" : "X6WB7MSR33",
-    "scope" :"name, email"
+    "scope" :"name email"
 }
