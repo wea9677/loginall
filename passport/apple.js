@@ -11,17 +11,16 @@ module.exports = () => {
                 teamId:'3L7RW74HCJ',
                 callbackURL: 'https://api.sprataprac.shop/oauth/apple/callback', 
                 keyID: 'X6WB7MSR33',
-                privateKeyString:`-----BEGIN PRIVATE KEY-----
-                MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/CQM5PxN3SbJqEd3
-                vl1S5I3i/gVkLrdGjSKtjneciWegCgYIKoZIzj0DAQehRANCAARygNoeqR/bwMS8
-                AchJfcDnre3Z0TxumK5HJ3W5nxYzltDzqOdPFsCzIx87GlWKUB1tVQPXi8TpOZp0
-                ZLn/lXgh
-                -----END PRIVATE KEY-----`,
+                // privateKeyString:`-----BEGIN PRIVATE KEY-----
+                // MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/CQM5PxN3SbJqEd3
+                // vl1S5I3i/gVkLrdGjSKtjneciWegCgYIKoZIzj0DAQehRANCAARygNoeqR/bwMS8
+                // AchJfcDnre3Z0TxumK5HJ3W5nxYzltDzqOdPFsCzIx87GlWKUB1tVQPXi8TpOZp0
+                // ZLn/lXgh
+                // -----END PRIVATE KEY-----`,
                 scope: 'name email'
-            }, async (req, accessToken, refreshToken, decodedIdToken, profile, cb) =>{
-                process.nextTick(() => cb(null, decodedIdToken));
+            }, async (req, accessToken, refreshToken, idToken, profile, cb) =>{
                 console.log('데이터 지니가나요',
-                    
+                    idToken, accessToken, refreshToken, profile
                 );
                 try {
                     const exUser = await user.findOne({
