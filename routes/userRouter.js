@@ -15,7 +15,7 @@ router.get('/google', passport.authenticate('google', {scope:['profile', 'email'
 router.get('/google/callback', googleCallback);
 
 //에플 로그인
-router.get('/apple/callback', appleCallback );
+router.get('/apple', appleCallback );
 
 router.post('/apple/callback', passport.authenticate('apple') );
 
