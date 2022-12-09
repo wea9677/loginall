@@ -17,7 +17,7 @@ module.exports = () => {
                 // f7M6jdrM
                 // -----END PRIVATE KEY-----`,
                 passReqToCallback: true,
-                privateKeyLocation:path.join(__dirname, "AuthKey_P7344SBK66.p8"),
+                privateKeyLocation:path.join(__dirname, "./AuthKey_P7344SBK66.p8"),
 
                 scope: 'name email'
             }, async (req, accessToken, refreshToken, idToken, profile, cb) =>{
