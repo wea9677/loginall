@@ -2,6 +2,7 @@ const passport = require('passport');
 const AppleStrategy = require('passport-apple').Strategy;
 const user = require('../model/user');
 const path = require('path');
+const fs = require('fs');
 module.exports = () => {
     passport.use(
         new AppleStrategy(
@@ -17,7 +18,7 @@ module.exports = () => {
                 // f7M6jdrM
                 // -----END PRIVATE KEY-----`,
                 passReqToCallback: true,
-                privateKeyLocation:path.join(__dirname, "./AuthKey_P7344SBK66.p8"),
+                privateKeyLocation:fs.readFileSync('./passport/AuthKey_P7344SBK66.p8','utf8'),
 
                 scope: 'name email'
             }, async (req, accessToken, refreshToken, idToken, profile, cb) =>{
