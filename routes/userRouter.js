@@ -5,8 +5,10 @@ const router = express.Router();
 const {
     googleCallback,
     appleCallback,
-    localSignup
-    
+    localSignup,
+    apple_auth,
+    apple_refresh,
+    tokenG
 } = require('../controller/userController');
 
 //구글 로그인
@@ -14,10 +16,17 @@ router.get('/google', passport.authenticate('google', {scope:['profile', 'email'
 
 router.get('/google/callback', googleCallback);
 
-//에플 로그인
-router.get('/apple', appleCallback );
+//애플 로그인
+// router.get('/apple', appleCallback );
 
-router.post('/apple/callback', passport.authenticate('apple') );
+// router.post('/apple/callback', passport.authenticate('apple') );
+
+//애플 로그인 apple-auth
+router.post('/apple/callback', apple_auth );
+
+router.get('/token', tokenG);
+
+router.get('/refresh', apple_refresh );
 
 
 //로컬 회원가입 & 로그인
