@@ -74,7 +74,7 @@ const appleCallback = (req, res, next) =>{
 // 에플로그인 apple-auth
 const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_F7J4Y7RXMA.p8'))
 
-const apple_auth = async ( req, res, next) =>{
+const apple_auth =  async ( req, res, next) =>{
     try {
         console.log(Date().toString() + "GET /auth");
         const response = await auth.accessToken(req.body.code);
