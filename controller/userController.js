@@ -15,7 +15,7 @@ const googleCallback = (req, res, next) =>{
             (err, user, info) =>{
                 if(err) return next(err);
 
-                const {userId, name, email} = user;
+                const {userId, email} = user;
                 const token = jwt.sign({userId}, process.env.MY_KEY, {
                     expiresIn: '24h',
                 });
@@ -23,7 +23,6 @@ const googleCallback = (req, res, next) =>{
                 result = {
                     userId,
                     token,
-                    name,
                     email
                 };
 

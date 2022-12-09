@@ -44,7 +44,7 @@ app.use(session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/auth', UserRouter);
+app.use('/oauth', express.urlencoded({ extended: false }), UserRouter);
 
 
 app.set("view engine", "ejs");
