@@ -8,10 +8,10 @@ module.exports = () => {
     passport.use(
         new AppleStrategy(
             {
-                clientID: 'app.koyeb.loginall',
+                clientID: 'shop.sprataprac.api',
                 teamId:'3L7RW74HCJ',
                 callbackURL: 'https://api.sprataprac.shop/oauth/apple/callback', 
-                keyID: 'F7J4Y7RXMA',
+                keyID: 'P7344SBK66',
                 // privateKeyString:`-----BEGIN PRIVATE KEY-----
                 // MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgTX4mocod+MNTP+nc
                 // OplsNxtHv+/TX6DfTRvhQgsveICgCgYIKoZIzj0DAQehRANCAAT2wwIkOpOw686G
@@ -19,7 +19,7 @@ module.exports = () => {
                 // f7M6jdrM
                 // -----END PRIVATE KEY-----`,
                 passReqToCallback: true,
-                privateKeyLocation:path.join(__dirname, "./AuthKey_F7J4Y7RXMA.p8"),
+                privateKeyLocation:path.join(__dirname, "./AuthKey_P7344SBK66.p8"),
 
                 scope: 'name email'
             }, async (req, accessToken, refreshToken, idToken, profile, cb) =>{
