@@ -12,13 +12,15 @@ module.exports = () => {
                 teamId:'3L7RW74HCJ',
                 callbackURL: 'https://api.sprataprac.shop/oauth/apple/callback', 
                 keyID: 'F7J4Y7RXMA',
-                // privateKeyString:`-----BEGIN PRIVATE KEY-----
-                // MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgTX4mocod+MNTP+nc
-                // OplsNxtHv+/TX6DfTRvhQgsveICgCgYIKoZIzj0DAQehRANCAAT2wwIkOpOw686G
-                // htu3IpsodOa+NRca+UHr/AD3OQGyf65AbZxXbmg/8hzXez6VeYOh/XZlmi/hCZrn
-                // f7M6jdrM
-                // -----END PRIVATE KEY-----`,
-                privateKeyLocation:path.join(__dirname, "/AuthKey_F7J4Y7RXMA.p8"),
+                privateKeyString:`-----BEGIN PRIVATE KEY-----
+                MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgTX4mocod+MNTP+nc
+                OplsNxtHv+/TX6DfTRvhQgsveICgCgYIKoZIzj0DAQehRANCAAT2wwIkOpOw686G
+                htu3IpsodOa+NRca+UHr/AD3OQGyf65AbZxXbmg/8hzXez6VeYOh/XZlmi/hCZrn
+                f7M6jdrM
+                -----END PRIVATE KEY-----`,
+                passReqToCallback: true,
+                // privateKeyLocation:path.join(__dirname, "/AuthKey_F7J4Y7RXMA.p8"),
+
                 scope: 'name email'
             }, async (req, accessToken, refreshToken, idToken, profile, cb) =>{
                 console.log('데이터 지니가나요',
