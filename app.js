@@ -2,6 +2,9 @@ require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose')
 const mariadb = require('mariadb');
+const fs = require('fs');
+const config = fs.readFileSync('./config/config.json');
+const AppleAuth = require('apple-auth');
 const passport = require('passport');
 const passportConfig = require('./passport/passport');
 const UserRouter = require('./routes/userRouter');
@@ -32,10 +35,10 @@ mongoose.connect('mongodb+srv://wea9677:tmxkdlfl@cluster0.xmzro.mongodb.net/logi
 //     console.error(error);
 // });
 
-
+const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_F7J4Y7RXMA.p8'))
 
 app.get('/', (req, res) =>{
-    res.status(200).render('index');
+    res.send(`<a href="${auth.loginURL()}">Sign in with Apple</a>`);
 });
 app.use(session({ 
     secret: 'SECRET',
