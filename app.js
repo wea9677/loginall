@@ -35,8 +35,12 @@ mongoose.connect('mongodb+srv://wea9677:tmxkdlfl@cluster0.xmzro.mongodb.net/logi
 
 
 app.get('/', (req, res) =>{
-    res.status(200).render('index');
+    res.send(`<a href="${auth.loginURL()}">Sign in with Apple</a>`);
 });
+
+app.get('/login',  (req, res) =>{
+    res.status(200).render('index');
+})
 app.use(session({ 
     secret: 'SECRET',
     resave: true,

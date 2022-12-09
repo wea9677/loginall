@@ -1,7 +1,7 @@
 {
-    "client_id" :"app.koyeb.loginall",
-    "team_id": "F7J4Y7RXMA",
+    "client_id" :"shop.sprataprac.api",
+    "team_id": "3L7RW74HCJ",
     "redirect_url" : "https://api.sprataprac.shop/oauth/apple/callback",
-    "key_id" : "X6WB7MSR33",
+    "key_id" : "P7344SBK66",
     "scope" :"name email"
 }

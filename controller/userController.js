@@ -1,10 +1,10 @@
 require('dotenv').config();
 const fs = require('fs');
-// const config = fs.readFileSync('./config/config.json');
+const config = fs.readFileSync('./config/config.json');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const user = require('../model/user');
-// const AppleAuth = require('apple-auth');
+const AppleAuth = require('apple-auth');
 
 
 
@@ -72,72 +72,72 @@ const appleCallback = (req, res, next) =>{
 }
 
 // 에플로그인 apple-auth
-// const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_F7J4Y7RXMA.p8'))
+const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_P7344SBK66.p8'))
 
-// const apple_auth =  async ( req, res, next) =>{
-//     try {
-//         console.log(Date().toString() + "GET /auth");
-//         const response = await auth.accessToken(req.body.code);
-//         console.log(response, 'accessToken?')
-//         const idToken = jwt.decode(response.id_token);
+const apple_auth =  async ( req, res, next) =>{
+    try {
+        console.log(Date().toString() + "GET /auth");
+        const response = await auth.accessToken(req.body.code);
+        console.log(response, 'accessToken?')
+        const idToken = jwt.decode(response.id_token);
 
-//         const user = {};
-//         user.id = idToken.sub;
-//         if (idToken.email) user.email = idToken.email;
-//         console.log(user.email, "유저.email");
-//         console.log(idToken.email, "아이디 토큰 이메일");
-//         if(req.body.user){
-//             const {name} = JSON.parse(req.body.user);
-//             user.name = name;
-//         }
-//         console.log(user.name, 'user.name');
-//         console.log(user, '유저정보');
-//         const exUser = await user.find({
-//             userId: idToken.sub
-//         });
-//         console.log(exUser, '저장된 에플 id 코드')
-//         if(exUser) {
-//             const {userId, email} = user;
-//             const token = jwt.sign({userId}, process.env.MY_KEY, {
-//                expiresIn:"24" 
-//             });
-//             result = {
-//                 userId,
-//                 token,
-//                 email
-//             };
-//             res.send({user:result});
-//             done(null, exUser);
+        const user = {};
+        user.id = idToken.sub;
+        if (idToken.email) user.email = idToken.email;
+        console.log(user.email, "유저.email");
+        console.log(idToken.email, "아이디 토큰 이메일");
+        if(req.body.user){
+            const {name} = JSON.parse(req.body.user);
+            user.name = name;
+        }
+        console.log(user.name, 'user.name');
+        console.log(user, '유저정보');
+        const exUser = await user.find({
+            userId: idToken.sub
+        });
+        console.log(exUser, '저장된 에플 id 코드')
+        if(exUser) {
+            const {userId, email} = user;
+            const token = jwt.sign({userId}, process.env.MY_KEY, {
+               expiresIn:"24" 
+            });
+            result = {
+                userId,
+                token,
+                email
+            };
+            res.send({user:result});
+            done(null, exUser);
 
-//         }else {
-//             const newUser = await user.create({
-//                 userId : idToken.sub,
-//                 email : idToken.email
-//             });
-//             done(null, newUser);
-//             console.log(newUser, '신규유저')
+        }else {
+            const newUser = await user.create({
+                userId : idToken.sub,
+                email : idToken.email
+            });
+            done(null, newUser);
+            console.log(newUser, '신규유저')
 
-//         }
-//     } catch (error) {
-//         throw new Error(500, err); 
-//     }
-// }
+        }
+    } catch (error) {
+        throw new Error(500, err); 
+    }
+}
 
-// const apple_refresh = async(req, res) =>{
-//     try {
-//         console.log(Date().toString() + "GET /refresh");
-//         const accessToken = await auth.refreshToken(req.query.refreshToken);
-//         res.json(accessToken);
-//     } catch (ex) {
-//         console.error(ex);
-//         res.send('에러발생')
-//     }
-// }
+const apple_refresh = async(req, res) =>{
+    try {
+        console.log(Date().toString() + "GET /refresh");
+        const accessToken = await auth.refreshToken(req.query.refreshToken);
+        res.json(accessToken);
+    } catch (ex) {
+        console.error(ex);
+        res.send('에러발생')
+    }
+}
 
-// const tokenG = (req, res) =>{
-//     console.log('토큰 가지고 오나요');
-//     res.send(auth._tokenGenerator.generate());
-// }
+const tokenG = (req, res) =>{
+    console.log('토큰 가지고 오나요');
+    res.send(auth._tokenGenerator.generate());
+}
 
 //로컬 회원가입 & 로그인
 
@@ -180,8 +180,8 @@ module.exports = {
     googleCallback,
     appleCallback,
     localSignup,
-    // apple_auth,
-    // apple_refresh,
-    // tokenG
+    apple_auth,
+    apple_refresh,
+    tokenG
     
 };
