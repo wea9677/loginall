@@ -9,7 +9,7 @@ module.exports = () => {
         new AppleStrategy(
             {
                 clientID: 'app.koyeb.loginall',
-                teamId:'F7J4Y7RXMA',
+                teamId:'3L7RW74HCJ',
                 callbackURL: 'https://api.sprataprac.shop/oauth/apple/callback', 
                 keyID: 'X6WB7MSR33',
                 // privateKeyString:`-----BEGIN PRIVATE KEY-----
