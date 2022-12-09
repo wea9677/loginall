@@ -11,7 +11,7 @@ module.exports = () => {
                 clientID: 'app.koyeb.loginall',
                 teamId:'3L7RW74HCJ',
                 callbackURL: 'https://api.sprataprac.shop/oauth/apple/callback', 
-                keyID: 'X6WB7MSR33',
+                keyID: 'F7J4Y7RXMA',
                 // privateKeyString:`-----BEGIN PRIVATE KEY-----
                 // MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/CQM5PxN3SbJqEd3
                 // vl1S5I3i/gVkLrdGjSKtjneciWegCgYIKoZIzj0DAQehRANCAARygNoeqR/bwMS8
