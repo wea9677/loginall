@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const AppleStrategy = require('passport-apple').Strategy;
 const user = require('../model/user');
 const fs = require('fs');
+const path = require('path');
 module.exports = () => {
     passport.use(
         new AppleStrategy(
