@@ -1,4 +1,5 @@
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 const AppleStrategy = require('passport-apple').Strategy;
 const user = require('../model/user');
 const fs = require('fs');
@@ -17,9 +18,10 @@ module.exports = () => {
                 ZLn/lXgh
                 -----END PRIVATE KEY-----`,
                 scope: 'name email'
-            }, async (req, accessToken, refreshToken, idToken, profile, cb) =>{
+            }, async (req, accessToken, refreshToken, decodedIdToken, profile, cb) =>{
+                process.nextTick(() => cb(null, decodedIdToken));
                 console.log('데이터 지니가나요',
-                    idToken, accessToken, refreshToken, profile
+                    
                 );
                 try {
                     const exUser = await user.findOne({
