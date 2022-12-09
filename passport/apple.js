@@ -8,7 +8,7 @@ module.exports = () => {
             {
                 clientID: 'app.koyeb.loginall',
                 teamId:'3L7RW74HCJ',
-                callbackURL: 'http://api.sprataprac.shop/oauth/apple/callback', 
+                callbackURL: 'https://api.sprataprac.shop/oauth/apple/callback', 
                 keyID: 'X6WB7MSR33',
                 privatekeyLocation: fs.readFileSync('./AuthKey_X6WB7MSR33.p8'),
                 scope: 'name email'
