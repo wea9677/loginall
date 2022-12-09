@@ -1,7 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const user = require('../model/user');
-// const User = require('../models/user');
+
  
 module.exports = () => {
    passport.use(
@@ -16,7 +16,7 @@ module.exports = () => {
             try {
                const exUser = await user.findOne({
                   // 구글 플랫폼에서 로그인 했고 & snsId필드에 구글 아이디가 일치할경우
-                  where: { snsId: profile.id, provider: 'google' },
+                  where: { userId: profile.id, provider: 'google' },
                });
                console.log(exUser, ' 여기는 이미 있는지 확인')
                // 이미 가입된 구글 프로필이면 성공
@@ -26,9 +26,8 @@ module.exports = () => {
                   // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
                   const newUser = await user.create({
                      userId: profile.id,
-                     email: profile?.email[0].value,
+                     email: profile.emails[0].value,
                      // name: profile.displayName,
-                    //  userId: profile.id,
                      provider: 'google',
                   });
                   done(null, newUser); // 회원가입하고 로그인 인증 완료
