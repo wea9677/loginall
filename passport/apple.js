@@ -10,7 +10,7 @@ module.exports = () => {
                 clientID: 'shop.sprataprac.api',
                 teamId:'3L7RW74HCJ',
                 callbackURL: 'https://api.sprataprac.shop/oauth/apple/callback', 
-                keyID: 'P7344SBK66',
+                keyID: 'P7344SBK66A',
                 // privateKeyString:`-----BEGIN PRIVATE KEY-----
                 // MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgTX4mocod+MNTP+nc
                 // OplsNxtHv+/TX6DfTRvhQgsveICgCgYIKoZIzj0DAQehRANCAAT2wwIkOpOw686G
