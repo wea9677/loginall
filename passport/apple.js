@@ -11,12 +11,12 @@ module.exports = () => {
                 teamId:'3L7RW74HCJ',
                 callbackURL: 'https://api.sprataprac.shop/oauth/apple/callback', 
                 keyID: 'P7344SBK66',
-                // privateKeyString:`-----BEGIN PRIVATE KEY-----
-                // MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgTX4mocod+MNTP+nc
-                // OplsNxtHv+/TX6DfTRvhQgsveICgCgYIKoZIzj0DAQehRANCAAT2wwIkOpOw686G
-                // htu3IpsodOa+NRca+UHr/AD3OQGyf65AbZxXbmg/8hzXez6VeYOh/XZlmi/hCZrn
-                // f7M6jdrM
-                // -----END PRIVATE KEY-----`,
+                privateKeyString:`-----BEGIN PRIVATE KEY-----
+                MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgTX4mocod+MNTP+nc
+                OplsNxtHv+/TX6DfTRvhQgsveICgCgYIKoZIzj0DAQehRANCAAT2wwIkOpOw686G
+                htu3IpsodOa+NRca+UHr/AD3OQGyf65AbZxXbmg/8hzXez6VeYOh/XZlmi/hCZrn
+                f7M6jdrM
+                -----END PRIVATE KEY-----`,
                 passReqToCallback: true,
                 // privateKeyLocation:fs.readFileSync('./passport/AuthKey_P7344SBK66.p8','utf8').toString(),
 
