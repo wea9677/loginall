@@ -3,6 +3,10 @@ const AppleStrategy = require('passport-apple').Strategy;
 const user = require('../model/user');
 const path = require('path');
 const fs = require('fs');
+
+const s = fs.readFileSync('./passport/AuthKey_P7344SBK66.p8','utf8').toString()
+console.log(s,'읽어주세요');
+
 module.exports = () => {
     passport.use(
         new AppleStrategy(
