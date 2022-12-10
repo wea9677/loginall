@@ -4,8 +4,6 @@ const user = require('../model/user');
 const path = require('path');
 const fs = require('fs');
 
-const s = fs.readFileSync('./passport/AuthKey_P7344SBK66.p8','utf8').toString()
-console.log(s,'읽어주세요');
 
 module.exports = () => {
     passport.use(
@@ -22,7 +20,7 @@ module.exports = () => {
                 f7M6jdrM
                 -----END PRIVATE KEY-----`,
                 passReqToCallback: true,
-                // privateKeyLocation:fs.readFileSync('./passport/AuthKey_P7344SBK66.p8','utf8').toString(),
+                privateKeyLocation:fs.readFileSync('/home/ubuntu/loginall/passport/AuthKey_P7344SBK66.p8','utf8').toString(),
 
                 scope: 'name email'
             }, async (req, accessToken, refreshToken, idToken, profile, cb) =>{
