@@ -18,7 +18,7 @@ module.exports = () => {
                 // f7M6jdrM
                 // -----END PRIVATE KEY-----`,
                 passReqToCallback: true,
-                privateKeyLocation:fs.readFileSync('./passport/AuthKey_P7344SBK66.p8','utf8'),
+                privateKeyLocation:fs.readFileSync('./passport/AuthKey_P7344SBK66.p8','utf8').toString(),
 
                 scope: 'name email'
             }, async (req, accessToken, refreshToken, idToken, profile, cb) =>{
