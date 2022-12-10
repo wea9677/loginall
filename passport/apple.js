@@ -25,7 +25,7 @@ module.exports = () => {
                 console.log('데이터 지니가나요',
                     idToken, accessToken, refreshToken, profile
                 );
-                try {
+                // try {
                     const exUser = await user.findOne({
                         where: {userId:idToken, provider : 'apple'},
                     });
@@ -40,10 +40,10 @@ module.exports = () => {
                         });
                         done(null, newUser);
                     }
-                } catch (error) {
-                    console.error(error);
-                    done(error);
-                }
+                // } catch (error) {
+                //     console.error(error);
+                //     done(error);
+                // }
             },
         ),
     );
