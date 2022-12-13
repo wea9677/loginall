@@ -22,7 +22,7 @@ router.get('/google/callback', googleCallback);
 // router.post('/apple/callback', passport.authenticate('apple') );
 
 // 애플 로그인 apple-auth
-router.post('/apple/callback', bodyParser(), apple_auth );
+router.get('/apple/callback', bodyParser(), apple_auth );
 
 // router.get('/', (req, res) =>{
 //     console.log( Date()/this.toString() + "GET / ");
