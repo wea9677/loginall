@@ -108,14 +108,14 @@ const apple_auth =  async ( req, res, next) =>{
                 email
             };
             res.send({User:result});
-            // done(null, exUser);
+            done(null, exUser);
 
         }else {
             const newUser = await user.create({
                 userId : idToken.sub,
                 email : idToken.email
             });
-            // done(null, newUser);
+            done(null, newUser);
             console.log(newUser, '신규유저')
 
         }
