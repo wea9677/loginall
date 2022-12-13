@@ -107,7 +107,7 @@ const apple_auth =  async ( req, res, next) =>{
                 token,
                 email
             };
-            res.send({User:result});
+            // res.send({User:result});
             done(null, exUser);
 
         }else {
