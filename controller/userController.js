@@ -102,7 +102,7 @@ const apple_auth =  async ( req, res, next) =>{
         res.send(newUser);
         console.log(newUser, '뉴유저');
         const exUser = await user.findOne({
-           $or:{userId:idToken.sub, provider:'apple'},
+           $or:[{userId:idToken.sub, provider:'apple'}],
         });
         console.log(exUser, '이미 있을지 확인')
         if (exUser){
