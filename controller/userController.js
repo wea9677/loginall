@@ -116,7 +116,7 @@ const apple_auth =  async ( req, res, next) =>{
                 token,
                 email
             };
-            res.send({user : result})
+            res.send({user : result});
         }
         // const exUser = await user.findOne({
         //     where:{userId: idToken.sub, provider: 'apple'}
