@@ -94,7 +94,7 @@ const apple_auth =  async ( req, res, next) =>{
         console.log(User.name, 'user.name');
         console.log(User, '유저정보');
         const exUser = await user.find({
-            $or:[{userId: idToken.sub}]
+            where:{userId: idToken.sub}
         });
         console.log(exUser, '저장된 에플 id 코드')
         if(exUser) {
@@ -108,7 +108,7 @@ const apple_auth =  async ( req, res, next) =>{
                 email
             };
             console.log(result, '이건 지나갈꺼야')
-            // res.send({user : result});
+            res.send({user : result});
             done(exUser, null);
         }else {
             const newUser = await user.create({
