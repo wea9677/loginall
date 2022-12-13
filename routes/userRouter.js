@@ -24,6 +24,11 @@ router.get('/google/callback', googleCallback);
 // 애플 로그인 apple-auth
 router.post('/apple/callback', bodyParser(), apple_auth );
 
+// router.get('/', (req, res) =>{
+//     console.log( Date()/this.toString() + "GET / ");
+//     res.send(`<a href="${auth.loginURL()}">Sign in with Apple</a>`);
+// })
+
 router.get('/apple/token', tokenG);
 
 router.get('/apple', apple_refresh );

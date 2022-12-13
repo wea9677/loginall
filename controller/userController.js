@@ -72,10 +72,8 @@ const googleCallback = (req, res, next) =>{
 // }
 
 // 에플로그인 apple-auth
+
 const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_P7344SBK66.p8').toString(), 'text')
-
-
-
 
 const apple_auth =  async ( req, res, next) =>{
     try {
