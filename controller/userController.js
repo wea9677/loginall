@@ -105,10 +105,14 @@ const apple_auth =  async ( req, res, next) =>{
         res.send(newUser);
         console.log(newUser, '뉴유저');
         
-        if (exUser){
+        if (exUser.length){
         
-        console.log(exUser, '이미 있을지 확인')
-        
+            res.status(400).send({
+                errorMessage:'이미 중복된 회원이 존재합니다.'
+            });
+            return;
+          
+        }else {
             const {userId, email} = user;
             const token = jwt.sign({userId}, process.env.MY_KEY, {
                 expiresIn:'24h',
