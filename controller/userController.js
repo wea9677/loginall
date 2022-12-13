@@ -79,9 +79,9 @@ const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_P7344SBK66.
 
 const apple_auth =  async ( req, res, next) =>{
     // try {
-        console.log(Date().toString() + "GET /apple");
+        // console.log(Date().toString() + "GET /apple");
         const response = await auth.accessToken(req.body.code);
-        console.log(response, 'accessToken?')
+        // console.log(response, 'accessToken?')
         const idToken = jwt.decode(response.id_token);
 
         const User ={};
@@ -93,15 +93,15 @@ const apple_auth =  async ( req, res, next) =>{
             const {name} = JSON.parse(req.body.User);
             User.name = name;
         }
-        console.log(User.name, 'user.name');
+        // console.log(User.name, 'user.name');
         console.log(User, '유저정보');
         
         const exUser = await user.findOne({
             where:{userId: idToken.sub, provider: 'apple'}
         });
         console.log(exUser, '저장된 에플 id 코드')
-        if(exUser) {
-            const {userId, email} = user;
+        if (exUser) {
+            const {userId, email} = User;
             const token = jwt.sign({userId}, process.env.MY_KEY, {
                expiresIn:"24" 
             });
