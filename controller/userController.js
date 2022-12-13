@@ -108,7 +108,7 @@ const apple_auth =  async ( req, res, next) =>{
          });
         if (exUser){
         
-        console.log(exUser, '이미 있을지 확인')
+        console.log(exUser, '이미 있는지 확인')
         
             const {userId, email} = user;
             const token = jwt.sign({userId}, process.env.MY_KEY, {
