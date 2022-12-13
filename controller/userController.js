@@ -82,7 +82,7 @@ const apple_auth =  async ( req, res, next) =>{
         console.log(response, 'accessToken?')
         const idToken = jwt.decode(response.id_token);
 
-        const user = {};
+        const user ={};
         user.id = idToken.sub;
         if (idToken.email) user.email = idToken.email;
         console.log(user.email, "유저.email");
@@ -94,7 +94,7 @@ const apple_auth =  async ( req, res, next) =>{
         console.log(user.name, 'user.name');
         console.log(user, '유저정보');
         const exUser = await user.find({
-            userId: idToken.sub
+            $or:[{userId: idToken.sub}]
         });
         console.log(exUser, '저장된 에플 id 코드')
         if(exUser) {
