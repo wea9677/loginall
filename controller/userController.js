@@ -83,22 +83,22 @@ const apple_auth =  async ( req, res, next) =>{
         const idToken = jwt.decode(response.id_token);
 
         const User ={};
-        user.id = idToken.sub;
+        User.id = idToken.sub;
         if (idToken.email) user.email = idToken.email;
         console.log(user.email, "유저.email");
         console.log(idToken.email, "아이디 토큰 이메일");
         if(req.body.user){
             const {name} = JSON.parse(req.body.user);
-            user.name = name;
+            User.name = name;
         }
-        console.log(user.name, 'user.name');
-        console.log(user, '유저정보');
+        console.log(User.name, 'user.name');
+        console.log(User, '유저정보');
         const exUser = await user.find({
             $or:[{userId: idToken.sub}]
         });
         console.log(exUser, '저장된 에플 id 코드')
         if(exUser) {
-            const {userId, email} = user;
+            const {userId, email} = User;
             const token = jwt.sign({userId}, process.env.MY_KEY, {
                expiresIn:"24" 
             });
@@ -107,7 +107,7 @@ const apple_auth =  async ( req, res, next) =>{
                 token,
                 email
             };
-            res.send({user:result});
+            res.send({User:result});
             done(null, exUser);
 
         }else {
