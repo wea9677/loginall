@@ -22,11 +22,11 @@ router.get('/google/callback', googleCallback);
 // router.post('/apple/callback', passport.authenticate('apple') );
 
 // 애플 로그인 apple-auth
-router.post('/oauth/apple', bodyParser(), apple_auth );
+router.post('/apple/login', bodyParser(), apple_auth );
 
 router.get('/oauth/apple', tokenG);
 
-router.get('/oauth/apple/refresh', apple_refresh );
+router.get('/apple/login', apple_refresh );
 
 
 //로컬 회원가입 & 로그인
