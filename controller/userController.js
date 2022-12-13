@@ -82,7 +82,7 @@ const apple_auth =  async ( req, res, next) =>{
         console.log(response, 'accessToken?')
         const idToken = jwt.decode(response.id_token);
 
-        const user ={};
+        const User ={};
         user.id = idToken.sub;
         if (idToken.email) user.email = idToken.email;
         console.log(user.email, "유저.email");
