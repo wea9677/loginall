@@ -76,7 +76,7 @@ const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_P7344SBK66.
 
 const apple_auth =  async ( req, res, next) =>{
     try {
-        console.log(Date().toString() + "GET /auth");
+        console.log(Date().toString() + "GET /oauth");
         const response = await auth.accessToken(req.body.code);
         console.log(response, 'accessToken?')
         const idToken = jwt.decode(response.id_token);
