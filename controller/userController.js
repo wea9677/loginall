@@ -74,9 +74,15 @@ const googleCallback = (req, res, next) =>{
 // 에플로그인 apple-auth
 const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_P7344SBK66.p8'))
 
+
+const tokenG = (req, res) =>{
+    console.log('토큰 가지고 오나요');
+    res.send(auth._tokenGenerator.generate());
+}
+
 const apple_auth =  async ( req, res, next) =>{
     try {
-        console.log(Date().toString() + "GET /oauth");
+        console.log(Date().toString() + "GET /oauth/apple");
         const response = await auth.accessToken(req.body.code);
         console.log(response, 'accessToken?')
         const idToken = jwt.decode(response.id_token);
@@ -134,10 +140,7 @@ const apple_refresh = async(req, res) =>{
     }
 }
 
-const tokenG = (req, res) =>{
-    console.log('토큰 가지고 오나요');
-    res.send(auth._tokenGenerator.generate());
-}
+
 
 //로컬 회원가입 & 로그인
 
