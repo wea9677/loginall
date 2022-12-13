@@ -98,7 +98,6 @@ const apple_auth =  async ( req, res, next) =>{
         });
         console.log(exUser, '저장된 에플 id 코드')
         if(exUser) {
-            done(null, exUser);
             const {userId, email} = user;
             const token = jwt.sign({userId}, process.env.MY_KEY, {
                expiresIn:"24" 
