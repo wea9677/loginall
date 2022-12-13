@@ -106,7 +106,7 @@ const apple_auth =  async ( req, res, next) =>{
                expiresIn:"24" 
             });
             result = {
-                userId,
+                userId:User.id,
                 token,
                 email
             };
