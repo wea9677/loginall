@@ -93,8 +93,8 @@ const apple_auth =  async ( req, res, next) =>{
         }
         console.log(user.name, 'user.name');
         console.log(user, '유저정보');
-        const exUser = await db.user.findOne({
-            where : {userId: idToken.sub, provider : 'apple'}
+        const exUser = await user.find({
+            userId: idToken.sub
         });
         console.log(exUser, '저장된 에플 id 코드')
         if(exUser) {
