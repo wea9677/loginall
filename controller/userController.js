@@ -94,6 +94,9 @@ const apple_auth =  async ( req, res, next) =>{
         }
         console.log(User.name, 'user.name');
         console.log(User, '유저정보');
+        const exUser = await user.findOne({
+            $or:[{userId:idToken.sub, provider:'apple'}],
+         });
         const newUser = await user.create({
             userId : idToken.sub,
             email : idToken.email,
@@ -101,10 +104,9 @@ const apple_auth =  async ( req, res, next) =>{
         });
         res.send(newUser);
         console.log(newUser, '뉴유저');
+        
         if (exUser){
-        const exUser = await user.findOne({
-           $or:[{userId:idToken.sub, provider:'apple'}],
-        });
+        
         console.log(exUser, '이미 있을지 확인')
         
             const {userId, email} = user;
