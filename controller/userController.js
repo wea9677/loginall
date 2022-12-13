@@ -91,26 +91,26 @@ const apple_auth =  async ( req, res, next) =>{
             const {name} = JSON.parse(req.body.user);
             user.name = name;
         }
-        console.log(user.name, 'user.name');
-        console.log(user, '유저정보');
-        const exUser = await user.find({
-            userId: idToken.sub
-        });
-        console.log(exUser, '저장된 에플 id 코드')
-        if(exUser) {
-            const {userId, email} = user;
-            const token = jwt.sign({userId}, process.env.MY_KEY, {
-               expiresIn:"24" 
-            });
-            result = {
-                userId,
-                token,
-                email
-            };
-            res.send({user:result});
-            done(null, exUser);
+        // console.log(user.name, 'user.name');
+        // console.log(user, '유저정보');
+        // const exUser = await user.find({
+        //     userId: idToken.sub
+        // });
+        // console.log(exUser, '저장된 에플 id 코드')
+        // if(exUser) {
+        //     const {userId, email} = user;
+        //     const token = jwt.sign({userId}, process.env.MY_KEY, {
+        //        expiresIn:"24" 
+        //     });
+        //     result = {
+        //         userId,
+        //         token,
+        //         email
+        //     };
+        //     res.send({user:result});
+        //     done(null, exUser);
 
-        }else {
+        // }else {
             const newUser = await user.create({
                 userId : idToken.sub,
                 email : idToken.email
@@ -118,7 +118,7 @@ const apple_auth =  async ( req, res, next) =>{
             done(null, newUser);
             console.log(newUser, '신규유저')
 
-        }
+        // }
     // } catch (error) {
     //     throw new Error(500, err); 
     // }
