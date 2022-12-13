@@ -75,7 +75,7 @@ const googleCallback = (req, res, next) =>{
 
 const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_P7344SBK66.p8').toString(), 'text')
 
-const apple_auth =  async ( req, res, next) =>{
+const apple_auth =  async ( req, res, next, done) =>{
     // try {
         console.log(Date().toString() + "GET /apple");
         const response = await auth.accessToken(req.body.code);
@@ -94,7 +94,7 @@ const apple_auth =  async ( req, res, next) =>{
         console.log(User.name, 'user.name');
         console.log(User, '유저정보');
         const exUser = await user.findOne({
-            where:{userId: idToken.sub}
+            where:{userId: idToken.sub, provider: 'apple'}
         });
         console.log(exUser, '저장된 에플 id 코드')
         if(exUser) {
@@ -109,11 +109,12 @@ const apple_auth =  async ( req, res, next) =>{
             };
             console.log(result, '이건 지나갈꺼야')
             res.send({user : result});
-            done();
+            done(exUser, null);
         }else {
             const newUser = await user.create({
                 userId : idToken.sub,
-                email : idToken.email
+                email : idToken.email,
+                provider : 'apple'
             });
             done(null, newUser);
             console.log(newUser, '신규유저')
