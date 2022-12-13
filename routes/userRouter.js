@@ -24,7 +24,7 @@ router.get('/google/callback', googleCallback);
 // 애플 로그인 apple-auth
 router.post('/apple/callback', bodyParser(), apple_auth );
 
-router.get('/oauth/apple', tokenG);
+router.get('/apple', tokenG);
 
 router.get('/apple/refresh', apple_refresh );
 
