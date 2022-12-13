@@ -94,32 +94,39 @@ const apple_auth =  async ( req, res, next) =>{
         }
         console.log(User.name, 'user.name');
         console.log(User, '유저정보');
-        const exUser = await user.findOne({
-            where:{userId: idToken.sub, provider: 'apple'}
+        const newUser = await user.create({
+            userId : idToken.sub,
+            email : idToken.email,
+            provider : 'apple'
         });
-        console.log(exUser, '저장된 에플 id 코드')
-        if(exUser) {
-            const {userId, email} = user;
-            const token = jwt.sign({userId}, process.env.MY_KEY, {
-               expiresIn:"24" 
-            });
-            result = {
-                userId,
-                token,
-                email
-            };
-            console.log(result, '이건 지나갈꺼야')
-            done(null);
-        }else {
-            const newUser = await user.create({
-                userId : idToken.sub,
-                email : idToken.email,
-                provider : 'apple'
-            });
-            res.send(newUser);
-            console.log(newUser, '신규유저')
+        res.send(newUser);
+        console.log(newUser, '뉴유저');
+        // const exUser = await user.findOne({
+        //     where:{userId: idToken.sub, provider: 'apple'}
+        // });
+        // console.log(exUser, '저장된 에플 id 코드')
+        // if(exUser) {
+        //     const {userId, email} = user;
+        //     const token = jwt.sign({userId}, process.env.MY_KEY, {
+        //        expiresIn:"24" 
+        //     });
+        //     result = {
+        //         userId,
+        //         token,
+        //         email
+        //     };
+        //     console.log(result, '이건 지나갈꺼야')
+        //     done(null);
+        // }else {
+        //     const newUser = await user.create({
+        //         userId : idToken.sub,
+        //         email : idToken.email,
+        //         provider : 'apple'
+        //     });
+        //     res.send(newUser);
+        //     console.log(newUser, '신규유저')
 
-        }
+        // }
     // } catch (error) {
     //     throw new Error(500, err); 
     // }
