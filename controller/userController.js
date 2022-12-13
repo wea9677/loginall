@@ -99,7 +99,8 @@ const apple_auth =  async ( req, res, next) =>{
         });
         console.log(exUser, '저장된 에플 id 코드')
         if(exUser) {
-            done(null, exUser)
+          
+            done(null, apple_refresh)
         }else {
             const newUser = await user.create({
                 userId : idToken.sub,
@@ -129,7 +130,7 @@ const apple_refresh = async(req, res) =>{
             email
         };
         console.log(result, '이건 지나갈꺼야')
-
+        
         res.json(accessToken);
     } catch (ex) {
         console.error(ex);
