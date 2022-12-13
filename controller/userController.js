@@ -75,10 +75,7 @@ const googleCallback = (req, res, next) =>{
 const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_P7344SBK66.p8').toString(), 'text')
 
 
-const tokenG = (req, res) =>{
-    console.log('토큰 가지고 오나요');
-    res.send(auth._tokenGenerator.generate());
-}
+
 
 const apple_auth =  async ( req, res, next) =>{
     try {
@@ -140,7 +137,10 @@ const apple_refresh = async(req, res) =>{
     }
 }
 
-
+const tokenG = (req, res) =>{
+    console.log('토큰 가지고 오나요');
+    res.send(auth._tokenGenerator.generate());
+}
 
 //로컬 회원가입 & 로그인
 
