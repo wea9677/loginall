@@ -84,11 +84,11 @@ const apple_auth =  async ( req, res, next) =>{
 
         const User ={};
         User.id = idToken.sub;
-        if (idToken.email) user.email = idToken.email;
-        console.log(user.email, "유저.email");
+        if (idToken.email) User.email = idToken.email;
+        console.log(User.email, "유저.email");
         console.log(idToken.email, "아이디 토큰 이메일");
-        if(req.body.user){
-            const {name} = JSON.parse(req.body.user);
+        if(req.body.User){
+            const {name} = JSON.parse(req.body.User);
             User.name = name;
         }
         console.log(User.name, 'user.name');
