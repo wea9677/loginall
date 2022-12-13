@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const user = require('../model/user');
 const AppleAuth = require('apple-auth');
+const { doesNotMatch } = require('assert');
 
 
 
@@ -108,7 +109,7 @@ const apple_auth =  async ( req, res, next) =>{
                 email
             };
             console.log(result, '이건 지나갈꺼야')
-            
+            done(null, newUser)
         }else {
             const newUser = await user.create({
                 userId : idToken.sub,
