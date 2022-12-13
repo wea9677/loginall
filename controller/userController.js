@@ -94,9 +94,7 @@ const apple_auth =  async ( req, res, next) =>{
         }
         console.log(User.name, 'user.name');
         console.log(User, '유저정보');
-        const exUser = await user.findOne({
-            $or:[{userId:idToken.sub, provider:'apple'}],
-         });
+       
         const newUser = await user.create({
             userId : idToken.sub,
             email : idToken.email,
@@ -104,7 +102,10 @@ const apple_auth =  async ( req, res, next) =>{
         });
         res.send(newUser);
         console.log(newUser, '뉴유저');
-        
+
+        const exUser = await user.findOne({
+            $or:[{userId:idToken.sub, provider:'apple'}],
+         });
         if (exUser){
         
         console.log(exUser, '이미 있을지 확인')
@@ -121,7 +122,7 @@ const apple_auth =  async ( req, res, next) =>{
             };
            return res.send({user : result});
         }
-        return res.send("이미중복된 아이디가 있습니다.")
+        
         // const exUser = await user.findOne({
         //     where:{userId: idToken.sub, provider: 'apple'}
         // });
