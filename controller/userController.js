@@ -99,17 +99,7 @@ const apple_auth =  async ( req, res, next) =>{
         });
         console.log(exUser, '저장된 에플 id 코드')
         if(exUser) {
-            const {userId, email} = user;
-            const token = jwt.sign({userId}, process.env.MY_KEY, {
-               expiresIn:"24" 
-            });
-            result = {
-                userId,
-                token,
-                email
-            };
-            console.log(result, '이건 지나갈꺼야')
-            done(null, newUser)
+            done(null, exUser)
         }else {
             const newUser = await user.create({
                 userId : idToken.sub,
@@ -129,6 +119,17 @@ const apple_refresh = async(req, res) =>{
     try {
         console.log(Date().toString() + "GET /refresh");
         const accessToken = await auth.refreshToken(req.query.refreshToken);
+        const {userId, email} = user;
+        const token = jwt.sign({userId}, process.env.MY_KEY, {
+           expiresIn:"24" 
+        });
+        result = {
+            userId,
+            token,
+            email
+        };
+        console.log(result, '이건 지나갈꺼야')
+
         res.json(accessToken);
     } catch (ex) {
         console.error(ex);
