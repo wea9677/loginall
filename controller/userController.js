@@ -6,6 +6,7 @@ const passport = require('passport');
 const user = require('../model/user');
 const AppleAuth = require('apple-auth');
 const { doesNotMatch } = require('assert');
+const { send } = require('process');
 
 
 
@@ -94,63 +95,63 @@ const apple_auth =  async ( req, res, next) =>{
         }
         console.log(User.name, 'user.name');
         console.log(User, '유저정보');
-       
-        const newUser = await user.create({
-            userId : idToken.sub,
-            email : idToken.email,
-            provider : 'apple'
-        });
-        res.send(newUser);
-        console.log(newUser, '뉴유저');
-
+        
         const exUser = await user.findOne({
-            $or:[{userId:idToken.sub, provider:'apple'}],
-         });
-        if (exUser){
-        
-        console.log(exUser, '이미 있는지 확인')
-        
+            where:{userId: idToken.sub, provider: 'apple'}
+        });
+        console.log(exUser, '저장된 에플 id 코드')
+        if(exUser) {
             const {userId, email} = user;
             const token = jwt.sign({userId}, process.env.MY_KEY, {
-                expiresIn:'24h',
+               expiresIn:"24" 
             });
-
             result = {
                 userId,
                 token,
                 email
             };
-           return res.send({user : result});
-        }
-        
-        // const exUser = await user.findOne({
-        //     where:{userId: idToken.sub, provider: 'apple'}
-        // });
-        // console.log(exUser, '저장된 에플 id 코드')
-        // if(exUser) {
-        //     const {userId, email} = user;
-        //     const token = jwt.sign({userId}, process.env.MY_KEY, {
-        //        expiresIn:"24" 
-        //     });
-        //     result = {
-        //         userId,
-        //         token,
-        //         email
-        //     };
-        //     console.log(result, '이건 지나갈꺼야')
-        //     done(null);
-        // }else {
-        //     const newUser = await user.create({
-        //         userId : idToken.sub,
-        //         email : idToken.email,
-        //         provider : 'apple'
-        //     });
-        //     res.send(newUser);
-        //     console.log(newUser, '신규유저')
+            console.log(result, '이건 지나갈꺼야')
+            return; 
+        }else {
+            const newUser = await user.create({
+                userId : idToken.sub,
+                email : idToken.email,
+                provider : 'apple'
+            });
+            res.send(newUser);
+            console.log(newUser, '신규유저')
 
-        // }
+        }
     // } catch (error) {
     //     throw new Error(500, err); 
+    // }
+
+    // const newUser = await user.create({
+    //     userId : idToken.sub,
+    //     email : idToken.email,
+    //     provider : 'apple'
+    // });
+    // res.send(newUser);
+    // console.log(newUser, '뉴유저');
+
+    // const exUser = await user.findOne({
+    //     $or:[{userId:idToken.sub, provider:'apple'}],
+    //  });
+    // if (exUser){
+    
+    // console.log(exUser, '이미 있는지 확인')
+    
+    //     const {userId, email} = user;
+    //     const token = jwt.sign({userId}, process.env.MY_KEY, {
+    //         expiresIn:'24h',
+    //     });
+
+    //     result = {
+    //         userId,
+    //         token,
+    //         email
+    //     };
+    //    return res.send({user : result});
     // }
 }
 
