@@ -82,7 +82,7 @@ const tokenG = (req, res) =>{
 
 const apple_auth =  async ( req, res, next) =>{
     try {
-        console.log(Date().toString() + "GET /oauth/apple");
+        console.log(Date().toString() + "GET /apple");
         const response = await auth.accessToken(req.body.code);
         console.log(response, 'accessToken?')
         const idToken = jwt.decode(response.id_token);
