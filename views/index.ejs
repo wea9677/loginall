@@ -11,19 +11,8 @@
     <a href="/oauth/google">Login with google</a>
 
     <a href="/oauth/apple/callback">Login with apple</a>
-
-    <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
-        <div id="appleid-signin" data-color="black" data-border="true" data-type="sign in"></div>
-        <script type="text/javascript">
-            AppleID.auth.init({
-                clientId : 'shop.sprataprac.api',
-                scope : 'name email',
-                redirectURI : 'https://api.sprataprac.shop/oauth/apple/callback',
-                state : '[STATE]',
-                nonce : '[NONCE]',
-                usePopup : true
-            });
-        </script>
+    
+    <a href="https://appleid.apple.com/auth/authorize?client_id=shop.sprataprac.api&redirect_uri=https://api.sprataprac.shop/oauth/apple/callback&response_type=code id_token&state=[STATE]&scope=[SCOPES]&response_mode=form_post">Sign In with Apple</a>
 
   <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
   <script>
