@@ -75,7 +75,7 @@ const googleCallback = (req, res, next) =>{
 
 const auth = new AppleAuth(config, fs.readFileSync('./config/AuthKey_P7344SBK66.p8').toString(), 'text')
 
-const apple_auth =  async ( req, res, next, done) =>{
+const apple_auth =  async ( req, res, next) =>{
     // try {
         console.log(Date().toString() + "GET /apple");
         const response = await auth.accessToken(req.body.code);
@@ -109,6 +109,7 @@ const apple_auth =  async ( req, res, next, done) =>{
             };
             console.log(result, '이건 지나갈꺼야')
             res.send({user : result});
+            (req, res, next);
             done(exUser, null);
         }else {
             const newUser = await user.create({
