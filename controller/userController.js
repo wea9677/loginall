@@ -83,7 +83,7 @@ const apple_auth =  async ( req, res, next) =>{
         const response = await auth.accessToken(req.body.code);
         // console.log(response, 'accessToken?')
         const idToken = jwt.decode(response.id_token);
-
+        console.log(idToken, '여긴?')
         const User ={};
         User.id = idToken.sub;
         if (idToken.email) User.email = idToken.email;
@@ -94,7 +94,6 @@ const apple_auth =  async ( req, res, next) =>{
             User.name = name;
         }
         console.log(User.name, 'user.name 좀 주라');
-        console.log(name, '유저이름 주세요')
         console.log(User, '유저정보');
         
         const exUser = await user.findOne({
