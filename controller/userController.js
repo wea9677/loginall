@@ -93,7 +93,8 @@ const apple_auth =  async ( req, res, next) =>{
             const {name} = JSON.parse(req.body.User);
             User.name = name;
         }
-        // console.log(User.name, 'user.name');
+        console.log(User.name, 'user.name 좀 주라');
+        console.log(name, '유저이름 주세요')
         console.log(User, '유저정보');
         
         const exUser = await user.findOne({
