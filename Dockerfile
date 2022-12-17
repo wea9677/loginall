@@ -1,6 +1,6 @@
 FROM node:alpine
 WORKDIR /loginall
-COPY package*.json, ./
+COPY package*.json ./
 COPY .env ./
 RUN npm install, export $(cat .env | xargs)
 COPY . .
