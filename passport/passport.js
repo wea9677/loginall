@@ -1,6 +1,6 @@
 const passport = require('passport');
 const google = require('./google');
-const apple = require('./apple');
+// const apple = require('./apple');
 
 
 module.exports = () =>{
