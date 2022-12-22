@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 // const config = fs.readFileSync('./config/config.json');
 // const AppleAuth = require('apple-auth');
 const mariadb = require('mariadb');
+const geoip = require('geoip-country');
+const requestIp = require('request-ip');
 const passport = require('passport');
 const passportConfig = require('./passport/passport');
 const UserRouter = require('./routes/userRouter');
@@ -49,6 +51,17 @@ app.use(session({
     resave: true,
     saveUninitialized: true
   }));
+
+app.get('/main', function(req, res){
+    const ip = requestIp.getClientIp(req)
+    // const s_ip = ip.split(':').reverse()[0];
+    console.log(ip)
+    const geo = geoip.lookup(ip);
+    console.log(geo)
+    res.send(ip)
+});
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/oauth', express.urlencoded({ extended: false }), UserRouter);
