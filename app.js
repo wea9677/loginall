@@ -52,6 +52,15 @@ app.use(session({
     saveUninitialized: true
   }));
 
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/oauth', express.urlencoded({ extended: false }), UserRouter);
+
+
+app.set("view engine", "ejs");
+
 app.get('/main', function(req, res){
     const ip = requestIp.getClientIp(req)
     // const s_ip = ip.split(':').reverse()[0];
@@ -62,19 +71,10 @@ app.get('/main', function(req, res){
 });
 
 
-app.use(passport.initialize());
-app.use(passport.session());
-app.use('/oauth', express.urlencoded({ extended: false }), UserRouter);
-
-
-app.set("view engine", "ejs");
 
 
 
 
-
-
-
-app.listen(port, ()=>{
+app.listen(port, '0.0.0.0',()=>{
     console.log(`${port}로 서버가 열렸습니다.`)
 });
